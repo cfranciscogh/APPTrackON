@@ -1,0 +1,122 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<title>SODIMAC - Pedidos</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="css/themes/default/jquery.mobile.theme-1.4.5.min.css">
+     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/funciones.js"></script>
+    <script src="js/picking.js"></script>
+    
+    <style type="text/css">
+	#myPopup {
+		overflow:hidden;
+	}
+	</style>
+</head>
+
+<body >
+
+
+<div data-role="page" class="fondo">
+
+	<div data-role="header" data-position="fixed" data-theme="a">
+		<h1 id="tituloEmpresa"></h1>
+	</div><!-- /header -->
+
+	<div id="contentProgramaciones" role="main" class="ui-content">
+    
+    
+    <div id="divTABS" data-role="tabs">
+        	<div data-role="navbar">
+            	<ul>
+                	<li class="ui-tabs-active ui-state-active">
+                    <a class="ui-btn-active" href="#one" data-theme="a" style="font-size:16px;">E-Commerce</a></li>
+                    <li><a href="#two" data-theme="a" style="font-size:16px;">DAD</a></li>
+               </ul>
+            </div>
+    	<div id="one" class="ui-content ui-body ui-body-a">
+        
+        	<!--<form class="ui-filterable"><input id="rich-autocomplete-input" data-type="search" placeholder="Buscar..."></form>
+        <ul id="listProgramacion" data-role="listview" data-filter="true" data-inset="true" data-input="#rich-autocomplete-input">
+        </ul>-->
+        
+        	<form>
+    			<fieldset id="listProgramacion"  data-role="controlgroup">
+      			</fieldset>
+			</form>
+        
+        </div>
+        <div id="two" class="ui-content ui-body ui-body-a">
+        
+        	<!--<form class="ui-filterable"><input id="rich-autocomplete-input-DAD" data-type="search" placeholder="Buscar..."></form>
+        <ul id="listProgramacionDAD" data-role="listview" data-filter="true" data-inset="true" data-input="#rich-autocomplete-input-DAD">
+        </ul>-->
+        
+        <form>
+    			<fieldset id="listProgramacionDAD"  data-role="controlgroup">
+      			</fieldset>
+			</form>
+        
+        </div>
+     </div>
+     
+     
+     <div data-role="popup" id="myPopup"  data-overlay-theme="b">
+      	 	<div data-role="header">
+        <h1>Ingresar OC</h1>
+    </div><!-- /header -->
+    <div data-role="content">
+        
+        <form>
+        	 <input type="text" name="oc" id="oc" value=""  />
+        </form>
+        
+    </div><!-- /content -->
+    <div data-role="footer">
+        
+        
+        <div data-role="navbar" data-iconpos="top">
+		<ul>
+			<li><a id="agregarOC" data-icon="plus">Agregar</a></li>
+            
+           	 
+		</ul>
+	</div>
+        
+        
+    </div><!-- /footer -->
+           
+      		<a style="right: 4px; top: 4px;" href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+      
+      
+      
+      
+    </div>
+    
+    
+  
+      
+         
+        
+	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar" data-iconpos="top">
+		<ul>
+			<li><a id="actualizar" data-icon="check">Confirmar</a></li>
+            
+            <li><a id="irTracking" href="#" data-ajax="false" data-icon="back">Regresar</a></li>          	
+            
+			<li><a href="#myPopup" data-rel="popup" data-position-to="window" data-icon="plus">Agregar OC</a></li>			 
+		</ul>
+	</div><!-- /navbar -->
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+
+</body>
+</html>
