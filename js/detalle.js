@@ -18,6 +18,112 @@ var watchID = null;
 $(	document).ready(function(e) {
     
  
+ 
+ 
+ $("#registrarIncidencia").click(function(e) {
+        e.preventDefault();
+		
+		if ( latitude == "" ||  longitude == ""){
+			//alert("Ingrese DNI");
+			alerta("No se puede obtener información de ubicación, revise si su GPS se encuentra activo o tenga cobertura de red");
+			return;
+			}
+			
+			
+		if ( $("#hora").val() == "" ){
+			//alert("Ingrese Tiempo Aprox. de llegada");
+			alerta("Ingrese Tiempo Aprox. de llegada");
+			$("#hora").focus();
+			return;
+		}
+		
+		if ( $("#recepcionado").val() == 1 ){
+			
+			if ( $("#nombre").val() == "" ){
+			//alert("Ingrese Nombre");
+			alerta("Ingrese Nombre");
+			$("#nombre").focus();
+			return;
+			}
+			
+			if ( $("#dni").val() == "" ){
+			//alert("Ingrese DNI");
+			alerta("Ingrese DNI");
+			$("#dni").focus();
+			return;
+			}
+			
+			if ( latitude == null ||  longitude == null){
+			//alert("Ingrese DNI");
+			alerta("No se puede obtener información de su ubicación, revise si su GPS se encuentra activo o que se encuentre dentro de red de cobertura");
+			return;
+			}
+			
+			
+			
+		}
+		
+		
+		if ( $("input[name*=tipoIncidencia]:checked").val() ==  null ){			 
+				alerta("Seleccionar incidencia");
+				$("input[name*=tipoIncidencia").focus();
+				return;
+		
+		}
+		
+		
+	var parametros = new Object();
+	parametros.IDTranking = $("#IDTranking").val();	
+	parametros.IDPedido = $("#IDPedido").val();	
+	parametros.TiempoAproxLlegada = $("#hora").val();	
+	parametros.Recepcionado = $("#recepcionado").val();	
+	parametros.Nombre = $("#nombre").val();	
+	parametros.DNI = $("#dni").val();	
+	parametros.IDEstado = $("#estado").val();	
+	parametros.Observacion = $("#detalle").val();	
+	parametros.Latitud = latitude;	
+	parametros.Longitud = longitude;	
+	parametros.Incidencia = $("input[name*=tipoIncidencia]:checked").val();	 
+	parametros.FlagMail = 0;
+	//console.log(parametros);
+	//return;
+		
+	$.mobile.loading('show'); 
+	$.ajax({
+        url : "http://www.meridian.com.pe/ServiciosWEB_TEST/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/GenerarTraking",
+        type: "POST",
+		//crossDomain: true,
+        dataType : "json",
+        data : JSON.stringify(parametros),
+		contentType: "application/json; charset=utf-8",
+        success : function(data, textStatus, jqXHR) {
+			resultado = $.parseJSON(data.d);
+			$.mobile.loading('hide');
+			 if ( resultado.code == 1){
+				 $("#myPopup").popup("close");
+				 $("#detalle").val("");
+				 $("input[name*=tipoIncidencia]").removeAttr("checked");
+				 //$("#IDTranking").val(resultado.codigo);	
+				 //setTracking($("#IDPedido").val());
+			 }			 
+			 //alert(resultado.message);
+			 alerta(resultado.message);
+        },
+
+        error : function(jqxhr) 
+        {
+		  console.log(jqxhr);	
+          alerta('Error de conexi\u00f3n, contactese con sistemas!');
+        }
+
+    });		
+		
+		//
+		
+		
+    });
+	
+	
 	
 	$("input[id*='opcion']").change(function(e) {	 
 		//console.log($("label[for*='" + $(this).attr("id") + "']").find("img").attr("title") );
@@ -104,7 +210,7 @@ $(	document).ready(function(e) {
 	parametros.Latitud = latitude;	
 	parametros.Longitud = longitude;	
 	parametros.Incidencia = $("#incidencia").val();	 
-	
+	parametros.FlagMail = 1;
 	//console.log(parametros);
 	//return;
 		
