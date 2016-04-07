@@ -17,7 +17,12 @@ var watchID = null;
 
 $(	document).ready(function(e) {
     
-//function onDeviceReady() {
+ 
+	
+	$("input[id*='opcion']").change(function(e) {	 
+		//console.log($("label[for*='" + $(this).attr("id") + "']").find("img").attr("title") );
+        $("#txtIncidencia").html( $("label[for*='" + $(this).attr("id") + "']").find("img").attr("title") );
+    });
 
 	setPedido($.QueryString["IDPedido"]);
 	setTracking($.QueryString["IDPedido"]);
@@ -143,11 +148,14 @@ $(	document).ready(function(e) {
 
 function HabilitarIncidencia(control){
 	
- if ( $(control).val() == 5 )
+ if ( $(control).val() == 5 ){
 	 $("#DIVIncidencia").show();
- else
+	 $(" #btnIncidencia").hide("fast");
+ }
+ else{
  	$("#DIVIncidencia").hide();
- 
+	$(" #btnIncidencia").show("fast");
+ } 
 
 }
 
@@ -192,7 +200,7 @@ function setTracking(idPedido){
 					}
 					
 					if ( resultado[i].IDEstado > 3 ) {
-						$("#DIVEstado").fadeIn("fast");
+						$("#DIVEstado, #btnIncidencia").fadeIn("fast");
 						$("#DIVRecepcionado").fadeIn("fast");
 						$("#hora").val(resultado[i].TiempoAproxLlegadaFormat);
 					}

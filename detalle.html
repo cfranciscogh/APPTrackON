@@ -70,7 +70,14 @@
                 
             
                 <label for="hora">Tiempo Aprox. de llegada:</label>
-                <input type="text" readonly name="hora" id="hora" data-role="datebox" data-options='{"mode":"timebox", "useNewStyle":true, "overrideTimeFormat": 12}' />
+               
+                	<input type="text" readonly name="hora" id="hora" data-role="datebox" data-options='{"mode":"timebox", "useNewStyle":true, "overrideTimeFormat": 12}' />                
+                
+                	 
+                  
+                    
+                    
+              
                 
                 
                 
@@ -104,9 +111,10 @@
                 </select>
                 </div>
                 
+                  <a id="btnIncidencia" style="display:none;" href="#myPopup"  data-rel="popup" data-position-to="window" data-icon="plus" data-inline="true" data-corners="true" data-shadow="true"   data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-inline ui-btn-icon-left ui-icon-plus"> Regsitrar Incidencia </a>
                 
                 <div id="DIVIncidencia" style="display:none">
-                <label for="incidencia">Incidencia:</label>
+                <label for="incidencia">Motivo:</label>
                 <select name="incidencia" id="incidencia" data-native-menu="false">
                     <option value="0">Seleccionar Incidencia</option>
                     <option value="1">Cliente ausente</option>
@@ -123,6 +131,73 @@
                 <input type="hidden" value="0" id="IDPedido" name="IDPedido" />
                 
             </div>
+            
+            
+            
+            <div data-role="popup" id="myPopup"  data-overlay-theme="b">
+      	 	<div data-role="header">
+        <h1>Registrar incidencia</h1>
+    </div><!-- /header -->
+    <div data-role="content">
+        
+        <form>
+        
+         
+            <style>
+			.ui-controlgroup-controls .ui-radio{
+				width:25%;
+			}
+			.ui-controlgroup-controls .ui-radio .ui-btn{
+				padding:5px;
+			}
+			.ui-controlgroup-controls .ui-radio .ui-btn img{
+				max-width:100%;
+				display:block;
+			}
+			</style>
+             <fieldset data-role="controlgroup" data-type="horizontal">
+        <legend>Tipo de Inciencia:</legend>
+        
+        <input type="radio" name="tipoIncidencia" id="opcion1" value="10">
+        <label for="opcion1"><img src="img/icon1.jpg" title="Tr&aacute;fico" ></label>
+        <input type="radio" name="tipoIncidencia" id="opcion2" value="11">
+        <label for="opcion2"><img src="img/icon2.jpg" title="Falla Mecanica" ></label>
+        <input type="radio" name="tipoIncidencia" id="opcion3" value="12">
+        <label for="opcion3"><img src="img/icon3.jpg" title="Ruta Incorrecta" ></label>
+        <input type="radio" name="tipoIncidencia" id="opcion4" value="13">
+        <label for="opcion4"><img src="img/icon4.jpg" title="Accidente" ></label>
+    </fieldset>
+    
+    <div id="txtIncidencia" style="padding: 5px;text-align: center;font-weight: bold;background-color: #DFDDDD;border-radius: 10px; margin-bottom:5px;"></div>
+        	 
+             <label for="incidencia">Detalle:</label>
+             <textarea rows="2" name="detalle" id="detalle"></textarea>
+             
+        </form>
+        
+    </div><!-- /content -->
+    <div data-role="footer">
+        
+        
+        <div data-role="navbar" data-iconpos="top">
+		<ul>
+			<li><a id="agregarOC" data-icon="plus">Confirmar</a></li>
+            
+           	 
+		</ul>
+	</div>
+        
+        
+    </div><!-- /footer -->
+           
+      		<a style="right: 4px; top: 4px;" href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+      
+      
+      
+      
+    </div>
+    
+    
             
         </div>
          
