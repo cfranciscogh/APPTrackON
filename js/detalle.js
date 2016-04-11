@@ -263,12 +263,18 @@ function HabilitarIncidencia(control){
 	
  if ( $(control).val() == 5 ){
 	 $("#DIVIncidencia").show();
-	$(" #btnIncidencia").hide("fast");
  }
  else{
  	$("#DIVIncidencia").hide();
-	$(" #btnIncidencia").show("fast");
  } 
+ 
+  if ( $(control).val() == 4 ){
+	$(" #btnIncidencia").show("fast");
+ }
+ else{
+	$(" #btnIncidencia").hide("fast");
+ } 
+ 
 
 }
 

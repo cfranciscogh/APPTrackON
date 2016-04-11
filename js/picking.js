@@ -3,8 +3,15 @@
 $(document).ready(function(e) {  
 	getProgramaciones();
 	
+	 $("form").keypress(function(e) {
+        if (e.which == 13) {
+            return false;
+        }
+    });
+	
 	$("#agregarOC").click(function(e) {
 		 
+		 e.preventDefault();
 		
 		if (  $("#oc").val()== "" ){
 			alerta("Ingresar OC");
