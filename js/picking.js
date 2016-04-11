@@ -23,7 +23,7 @@ $(document).ready(function(e) {
 				contentType: "application/json; charset=utf-8",
 				success : function(data, textStatus, jqXHR) {
 				resultado = $.parseJSON(data.d);
-					console.log(resultado);
+					//console.log(resultado);
 					$.mobile.loading('hide');
 					if ( resultado.length > 0  ){
 						if ( resultado[0].IDEstado == 1 ){
@@ -139,6 +139,7 @@ function actualizarChofer(IDPedido,IDChofer){
 					$.mobile.loading('hide');
 					if ( resultado == 1  ){
 						alerta('OC agregada con exito.');
+						$("#myPopup").popup("close");
 						getProgramaciones();
 					}
 				},	

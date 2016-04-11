@@ -108,6 +108,7 @@ $(	document).ready(function(e) {
 			 }			 
 			 //alert(resultado.message);
 			 alerta(resultado.message);
+			 
         },
 
         error : function(jqxhr) 
@@ -225,12 +226,18 @@ $(	document).ready(function(e) {
         success : function(data, textStatus, jqXHR) {
 			resultado = $.parseJSON(data.d);
 			$.mobile.loading('hide');
+			 alerta(resultado.message);
+			 
 			 if ( resultado.code == 1){
+				  //location.href =  $("#regresarPanel").attr("href");
+			 		//$("#regresarPanel").click();
+			 
 				 $("#IDTranking").val(resultado.codigo);	
 				 setTracking($("#IDPedido").val());
 			 }			 
 			 //alert(resultado.message);
-			 alerta(resultado.message);
+			
+			
         },
 
         error : function(jqxhr) 
@@ -256,7 +263,7 @@ function HabilitarIncidencia(control){
 	
  if ( $(control).val() == 5 ){
 	 $("#DIVIncidencia").show();
-	 $(" #btnIncidencia").hide("fast");
+	$(" #btnIncidencia").hide("fast");
  }
  else{
  	$("#DIVIncidencia").hide();
@@ -296,17 +303,18 @@ function setTracking(idPedido){
 						$("#nombre").val(resultado[i].Nombre.trim());
 						$("#dni").val(resultado[i].DNI.trim());
 					}
-					
+					HabilitarIncidencia($("#estado"));
 					$("#estado").html("");
 					$("#estado").append("<option selected value='"+resultado[i].IDEstado+"'>"+resultado[i].Estado+"</option>");
-					
 					if ( resultado[i].IDEstado == 4 ) {
+						 $("#btnIncidencia").fadeIn("fast");					 
 						$("#estado").append("<option value='5'>NO ENTREGADO</option>");
 						//$("#estado").append("<option value='5'>PENDIENTE DE ENTREGA</option>");
 					}
+					 
 					
 					if ( resultado[i].IDEstado > 3 ) {
-						$("#DIVEstado, #btnIncidencia").fadeIn("fast");
+						$("#DIVEstado").fadeIn("fast");
 						$("#DIVRecepcionado").fadeIn("fast");
 						$("#hora").val(resultado[i].TiempoAproxLlegadaFormat);
 					}

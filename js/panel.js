@@ -73,6 +73,7 @@ function getProgramaciones(){
 				$( "#listProgramacionDAD" ).listview( "refresh" );
 			}
 			else{
+				$("#contentProgramaciones").find("h3").remove();
 				$("#contentProgramaciones #divTABS").fadeOut("fast", function(){
 					$("#contentProgramaciones").append("<h3>No se encontraron programaci&oacute;nes para el dia de hoy</h3>").hide().fadeIn("fast");
 				});
