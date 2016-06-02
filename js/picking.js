@@ -109,11 +109,63 @@ $(document).ready(function(e) {
         }
 
     });	
-	
-		 
-        
-		
+	   
     });
+	
+	
+
+	 
+	$("#liberar").click(function(e) {
+		var IDPedido = "";
+		$("#listProgramacion input").each(function(index, element) {
+			if ( $(this).is(":checked") ){
+				  IDPedido = IDPedido + "," + $(this).data("pedido");
+			}
+    	});
+		
+		$("#listProgramacionDAD input").each(function(index, element) {
+			if ( $(this).is(":checked") ){
+				  IDPedido = IDPedido + "," + $(this).data("pedido");
+			}
+    	});
+		 
+		if ( IDPedido == ""){
+			alerta('Debe seleccionar 1 o mas OC');
+			return;	
+		}
+		
+		$.mobile.loading('show');
+		$.ajax({
+        url : "http://www.meridian.com.pe/ServiciosWEB_TEST/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/LiberarPedido",
+        type: "POST",
+		//crossDomain: true,
+        dataType : "json",
+        data : '{"IDPedidos":"' + IDPedido + '"}',
+        //contentType: "xml",
+		contentType: "application/json; charset=utf-8",
+        success : function(data, textStatus, jqXHR) {
+		resultado = $.parseJSON(data.d);
+			console.log(resultado);
+			$.mobile.loading('hide');
+			if ( resultado == 1 ){
+				alerta("Se libero las OC con éxito");
+				getProgramaciones();
+			}
+        },
+
+        error : function(jqxhr) 
+        {
+		   console.log(jqxhr);	
+           alerta('Error de conexi\u00f3n, contactese con sistemas!');
+        }
+
+    });	
+	   
+    });
+	
+	
+	
+		
 	
 	if ($.QueryString["empresa"] == "SODIMA"){
 		$("#tituloEmpresa").html("SODIMAC");
