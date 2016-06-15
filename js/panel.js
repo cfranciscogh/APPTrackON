@@ -30,7 +30,7 @@ function getProgramaciones(){
 	$("#listProgramacion").html("");  
 	$("#listProgramacionDAD").html("");  
 	$.ajax({
-        url : "http://www.meridian.com.pe/ServiciosWEB_TEST/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/ConsultarPedidos",
+        url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/ConsultarPedidos",
         type: "POST",
 		//crossDomain: true,
         dataType : "json",

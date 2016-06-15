@@ -90,7 +90,7 @@ $(	document).ready(function(e) {
 		
 	$.mobile.loading('show'); 
 	$.ajax({
-        url : "http://www.meridian.com.pe/ServiciosWEB_TEST/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/GenerarTraking",
+        url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/GenerarTraking",
         type: "POST",
 		//crossDomain: true,
         dataType : "json",
@@ -217,7 +217,7 @@ $(	document).ready(function(e) {
 		
 	$.mobile.loading('show'); 
 	$.ajax({
-        url : "http://www.meridian.com.pe/ServiciosWEB_TEST/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/GenerarTraking",
+        url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/GenerarTraking",
         type: "POST",
 		//crossDomain: true,
         dataType : "json",
@@ -283,7 +283,7 @@ function setTracking(idPedido){
 	
 	$.mobile.loading('show'); 
 	$.ajax({
-        url : "http://www.meridian.com.pe/ServiciosWEB_TEST/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/ObtenerTraking",
+        url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/ObtenerTraking",
         type: "POST",
 		cache: false,
 		//crossDomain: true,
@@ -361,7 +361,7 @@ function setPedido(idPedido){
 	
 	$.mobile.loading('show'); 
 	$.ajax({
-        url : "http://www.meridian.com.pe/ServiciosWEB_TEST/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/ObtenerPedido",
+        url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/ObtenerPedido",
         type: "POST",
 		//crossDomain: true,
         dataType : "json",
@@ -416,7 +416,7 @@ function setDetallePedido(idPedido){
 	
 	$.mobile.loading('show'); 
 	$.ajax({
-        url : "http://www.meridian.com.pe/ServiciosWEB_TEST/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/ObtenerDetallePedido",
+        url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/ObtenerDetallePedido",
         type: "POST",
 		//crossDomain: true,
         dataType : "json",

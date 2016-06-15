@@ -23,7 +23,7 @@ var loginValidar = function(){
    	} 
 	 
 	$.ajax({
-        url : "http://www.meridian.com.pe/ServiciosWEB_TEST/TransportesMeridian/Autenticacion/LoginChofer.asmx/LoginChofer",
+        url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Autenticacion/LoginChofer.asmx/LoginChofer",
         type: "POST",
 		crossDomain: true,
         dataType : "json",

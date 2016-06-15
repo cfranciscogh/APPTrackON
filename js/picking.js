@@ -21,7 +21,7 @@ $(document).ready(function(e) {
 			
 			$.mobile.loading('show');
 			$.ajax({
-				url : "http://www.meridian.com.pe/ServiciosWEB_TEST/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/ObtenerTrakingPorOC",
+				url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/ObtenerTrakingPorOC",
 				type: "POST",
 				//crossDomain: true,
 				dataType : "json",
@@ -83,7 +83,7 @@ $(document).ready(function(e) {
 		
 		$.mobile.loading('show');
 		$.ajax({
-        url : "http://www.meridian.com.pe/ServiciosWEB_TEST/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/PickingPedido",
+        url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/PickingPedido",
         type: "POST",
 		//crossDomain: true,
         dataType : "json",
@@ -136,7 +136,7 @@ $(document).ready(function(e) {
 		
 		$.mobile.loading('show');
 		$.ajax({
-        url : "http://www.meridian.com.pe/ServiciosWEB_TEST/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/LiberarPedido",
+        url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/LiberarPedido",
         type: "POST",
 		//crossDomain: true,
         dataType : "json",
@@ -145,7 +145,7 @@ $(document).ready(function(e) {
 		contentType: "application/json; charset=utf-8",
         success : function(data, textStatus, jqXHR) {
 		resultado = $.parseJSON(data.d);
-			console.log(resultado);
+			//console.log(resultado);
 			$.mobile.loading('hide');
 			if ( resultado == 1 ){
 				alerta("Se libero las OC con éxito");
@@ -185,7 +185,7 @@ function actualizarChofer(IDPedido,IDChofer){
 	
 	$.mobile.loading('show');
 			$.ajax({
-				url : "http://www.meridian.com.pe/ServiciosWEB_TEST/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/actualizarChofer",
+				url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/actualizarChofer",
 				type: "POST",
 				//crossDomain: true,
 				dataType : "json",
@@ -225,7 +225,7 @@ function getProgramaciones(){
 	$("#listProgramacion").html("");  
 	$("#listProgramacionDAD").html("");  
 	$.ajax({
-        url : "http://www.meridian.com.pe/ServiciosWEB_TEST/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/ConsultarPedidosPicking",
+        url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/ConsultarPedidosPicking",
         type: "POST",
 		//crossDomain: true,
         dataType : "json",
