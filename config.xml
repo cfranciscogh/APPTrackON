@@ -49,7 +49,7 @@
     <!-- Plugins -->
 	 
 	 
-	<plugin name="phonegap-plugin-geolocation" />
+	<gap:plugin name="org.apache.cordova.geolocation" />
     <!-- Core plugins -->
 	 
 
