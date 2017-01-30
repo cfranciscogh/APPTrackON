@@ -48,8 +48,7 @@
 
     <!-- Plugins -->
 	 
-	 
-	<gap:plugin name="org.apache.cordova.geolocation" />
+ 
     <!-- Core plugins -->
 	 
 
