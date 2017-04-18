@@ -47,14 +47,34 @@ function getProgramaciones(){
 				var count = 0;
 				for (var i = 0; i<resultado.length;i++){
 					
+					var img = "";
+					if (resultado[i].IDEstado == 3)
+						img = "<img src='img/rojo.png' width='12' />";
+					if (resultado[i].IDEstado == 4)
+						img = "<img src='img/azul.png' width='12' />";
+					if (resultado[i].IDEstado == 5) //NO
+						img = "<img src='img/rojo.png' width='12' />";
+					if (resultado[i].IDEstado == 6)
+						img = "<img src='img/azul.png' width='12' />";
+						
+					var css = "";
+					if (resultado[i].IDEstado == 3)
+						css = "verde";
+					if (resultado[i].IDEstado == 4)
+						css = "ambar";
+					if (resultado[i].IDEstado == 5) //NO
+						css = "rojo";
+					if (resultado[i].IDEstado == 6)
+						css = "azul";
+					
 					if ( resultado[i].Operacion == "E" ){
 						//alert(resultado[i].IDEstado);
 						if (  resultado[i].IDEstado == 5  || resultado[i].IDEstado == 6 )
-							$("#listProgramacion").append('<li data-icon="check"><a>'+ resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</a></li> ');
+							$("#listProgramacion").append('<li data-icon="check"><a class="'+css+'">' + resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</a></li> ');
 						else {
 							 
 				 													 
-							$("#listProgramacion").append('<li><a data-ajax="false" href="detalle.html?IDPedido='+resultado[i].IDPedido+'&idChofer='+$.QueryString["idChofer"]+'&empresa='+$.QueryString["empresa"]+'">'+ resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</a></li> ');								 
+							$("#listProgramacion").append('<li><a  class="'+css+'" data-ajax="false" href="detalle.html?IDPedido='+resultado[i].IDPedido+'&idChofer='+$.QueryString["idChofer"]+'&empresa='+$.QueryString["empresa"]+'">' + resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</a></li> ');								 
 						}
 					
 					}

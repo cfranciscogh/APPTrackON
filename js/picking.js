@@ -243,14 +243,20 @@ function getProgramaciones(){
 				var count = 0;
 				for (var i = 0; i<resultado.length;i++){
 					
+					var grupo = "";					
+					if ( resultado[i].GrupoTracking  != "" )
+						grupo = "[Grupo: #" + resultado[i].GrupoCode + "] <br>";
+					
 					if ( resultado[i].Operacion == "E" ){
+						
+						
 						//alert(resultado[i].IDEstado);
 						if (  resultado[i].IDEstado == 1 )
-							$("#listProgramacion").append('<input data-pedido="' + resultado[i].IDPedido +  '" disabled="disabled" type="checkbox" name="checkbox-' + i + '" id="checkbox-' + i + '"><label for="checkbox-' + i + '">'+ resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</label> ');
+							$("#listProgramacion").append('<input data-pedido="' + resultado[i].IDPedido +  '" disabled="disabled" type="checkbox" name="checkbox-' + i + '" id="checkbox-' + i + '"><label for="checkbox-' + i + '">'+ grupo + resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</label> ');
 						else {
 							 
 				 													 
-							$("#listProgramacion").append('<input data-pedido="' + resultado[i].IDPedido +  '" type="checkbox" name="checkbox-' + i + '" id="checkbox-' + i + '"><label for="checkbox-' + i + '">'+ resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</label> ');								 
+							$("#listProgramacion").append('<input data-pedido="' + resultado[i].IDPedido +  '" type="checkbox" name="checkbox-' + i + '" id="checkbox-' + i + '"><label for="checkbox-' + i + '">'+ grupo + resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</label> ');								 
 						}
 						
 						$("#listProgramacion input").checkboxradio().checkboxradio("refresh");
@@ -258,11 +264,11 @@ function getProgramaciones(){
 					
 					}
 					if ( resultado[i].Operacion == "D" ){
-						
+						//console.log(resultado[i]);
 						if (  resultado[i].IDEstado == 1 )
-		 				$("#listProgramacionDAD").append('<input data-pedido="' + resultado[i].IDPedido +  '" disabled="disabled" type="checkbox" name="checkbox-' + i + '" id="checkbox-' + i + '"><label for="checkbox-' + i + '">'+ resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</label> ');
+		 				$("#listProgramacionDAD").append('<input data-pedido="' + resultado[i].IDPedido +  '" disabled="disabled" type="checkbox" name="checkbox-' + i + '" id="checkbox-' + i + '"><label for="checkbox-' + i + '">'+ grupo + resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</label> ');
 					else {						 
-						$("#listProgramacionDAD").append('<input data-pedido="' + resultado[i].IDPedido +  '" type="checkbox" name="checkbox-' + i + '" id="checkbox-' + i + '"><label for="checkbox-' + i + '">'+ resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</label> ');								 
+						$("#listProgramacionDAD").append('<input data-pedido="' + resultado[i].IDPedido +  '" type="checkbox" name="checkbox-' + i + '" id="checkbox-' + i + '"><label for="checkbox-' + i + '">'+ grupo + resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</label> ');								 
 					}
 					
 						$("#listProgramacionDAD input").checkboxradio().checkboxradio("refresh");
