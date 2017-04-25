@@ -21,7 +21,7 @@ $(document).ready(function(e) {
 
 function alertDismissed(){
 }
-//
+//  
 
 function getProgramaciones(){
 	
@@ -47,6 +47,11 @@ function getProgramaciones(){
 				var count = 0;
 				for (var i = 0; i<resultado.length;i++){
 					
+					var grupo = ""
+					if ( resultado[i].GrupoCode != ""){
+						grupo = "[Grupo #" + resultado[i].GrupoCode + "]<br>";
+					}
+					
 					var img = "";
 					if (resultado[i].IDEstado == 3)
 						img = "<img src='img/rojo.png' width='12' />";
@@ -70,20 +75,20 @@ function getProgramaciones(){
 					if ( resultado[i].Operacion == "E" ){
 						//alert(resultado[i].IDEstado);
 						if (  resultado[i].IDEstado == 5  || resultado[i].IDEstado == 6 )
-							$("#listProgramacion").append('<li data-icon="check"><a class="'+css+'">' + resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</a></li> ');
+							$("#listProgramacion").append('<li data-icon="check"><a class="'+css+'">' + grupo + resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</a></li> ');
 						else {
 							 
 				 													 
-							$("#listProgramacion").append('<li><a  class="'+css+'" data-ajax="false" href="detalle.html?IDPedido='+resultado[i].IDPedido+'&idChofer='+$.QueryString["idChofer"]+'&empresa='+$.QueryString["empresa"]+'">' + resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</a></li> ');								 
+							$("#listProgramacion").append('<li><a  class="'+css+'" data-ajax="false" href="detalle.html?IDPedido='+resultado[i].IDPedido+'&idChofer='+$.QueryString["idChofer"]+'&empresa='+$.QueryString["empresa"]+'">' + grupo + resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</a></li> ');								 
 						}
 					
 					}
 					if ( resultado[i].Operacion == "D" ){
 						
 						if (  resultado[i].IDEstado == 5  || resultado[i].IDEstado == 6 )
-		 				$("#listProgramacionDAD").append('<li data-icon="check"><a>'+ resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</a></li> ');
+		 				$("#listProgramacionDAD").append('<li data-icon="check"><a  class="'+css+'" >'+ grupo + resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</a></li> ');
 					else {						 
-						$("#listProgramacionDAD").append('<li><a data-ajax="false" href="detalle.html?IDPedido='+resultado[i].IDPedido+'&idChofer='+$.QueryString["idChofer"]+'&empresa='+$.QueryString["empresa"]+'">'+ resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</a></li> ');								 
+						$("#listProgramacionDAD").append('<li><a  class="'+css+'"  data-ajax="false" href="detalle.html?IDPedido='+resultado[i].IDPedido+'&idChofer='+$.QueryString["idChofer"]+'&empresa='+$.QueryString["empresa"]+'">'+ grupo + resultado[i].NroOrdenCompra + ' - ' + resultado[i].NombreCliente +'</a></li> ');								 
 					}
 						
 					}
