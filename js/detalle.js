@@ -113,7 +113,7 @@ $(	document).ready(function(e) {
 
         error : function(jqxhr) 
         {
-		  console.log(jqxhr);	
+		  //console.log(jqxhr);	
           alerta('Error de conexi\u00f3n, contactese con sistemas!');
         }
 
@@ -142,6 +142,8 @@ $(	document).ready(function(e) {
 	if ($.QueryString["empresa"] == "MAESTR"){
 		$("#tituloEmpresa").html("MAESTRO");
 	}//tituloEmpresa
+	
+	setIncidencias_Tracking($.QueryString["empresa"]);
 	
 	watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000 });
 	 
@@ -344,6 +346,43 @@ function setTracking(idPedido){
 
 
 
+function setIncidencias_Tracking(empresa){
+	
+	if (empresa!="SOLTRA")
+		empresa = "TODOS";
+		
+	$("#incidencia").html("<option value='0'>Seleccionar Incidencia</option>");
+	//$.mobile.loading('show'); 
+	$.ajax({
+        url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/Obtener_IncidenciaNontregado",
+        type: "POST",
+		cache: false,
+		//crossDomain: true,
+        dataType : "json",
+        data : '{"Empresa":"'+empresa+'"}',
+		contentType: "application/json; charset=utf-8",
+        success : function(data, textStatus, jqXHR) {
+			//console.log(data.d);
+			resultado = $.parseJSON(data.d);
+			$.mobile.loading('hide');			 
+			if ( resultado.length > 0 ){				
+				for (var i = 0; i<resultado.length;i++){					
+					$("#incidencia").append("<option value='"+resultado[i].IDIncidencia+"'>"+resultado[i].Descripcion+"</option>");					
+				}
+				$("#incidencia").selectmenu('refresh', true);
+			}
+			else{
+			}
+        },
+
+        error : function(jqxhr) 
+        {	
+          alerta('Error de conexi\u00f3n, contactese con sistemas!');
+        }
+
+    });		 
+	
+}
 
 
 
