@@ -16,7 +16,23 @@
     <!--<script type='text/javascript' src="js/jqm-datebox.mode.flipbox.min.js"></script>-->
       <script type="text/javascript" src="js/jquery.mobile.datebox.i18n.es-ES.utf8.js"></script>
     <script src="js/funciones.js"></script> 
-    <script src="js/detalle.js"></script>      
+    <script src="js/detalle.js"></script>  
+    <style type="text/css">
+	.imgPanel{
+		width:95%;
+		border:solid 1px #ccc;
+		margin:auto;
+	}
+	
+	.imgPanel a{
+		background-color:#ccc;
+		display:block;
+		text-align:center;
+		padding:10px;
+		cursor:pointer;
+		color:#333 !important;
+	}
+	</style>   
 </head>
 
 <body >
@@ -74,9 +90,12 @@
                
                 	<input type="text" readonly name="hora" id="hora" data-role="datebox" data-options='{"mode":"timebox", "useNewStyle":true, "overrideTimeFormat": 12}' />                
                 
-                	 
-                  
-                    
+                	 <div class="contentAtencion" style="display:none;">
+                  <label for="hora">Inicio de Atenci&oacute;n:</label>
+				<input type="text" readonly name="hora_inicio" id="hora_inicio" data-role="datebox" data-options='{"mode":"timebox", "useNewStyle":true, "overrideTimeFormat": 12}' />    
+                 <label for="hora">Fin de Atenci&oacute;n:</label>   
+				<input type="text" readonly name="hora_fin" id="hora_fin" data-role="datebox" data-options='{"mode":"timebox", "useNewStyle":true, "overrideTimeFormat": 12}' />       
+                </div>    
                     
               
                 
@@ -92,11 +111,6 @@
                 
                 <div class="contentDatos" style="display:none;">
                 <h4>Información de recepción:</h4>
-                
-                <label for="hora">Inicio de Atención:</label>
-				<input type="text" readonly name="hora_inicio" id="hora_inicio" data-role="datebox" data-options='{"mode":"timebox", "useNewStyle":true, "overrideTimeFormat": 12}' />    
-                 <label for="hora">Fin de Atención:</label>   
-				<input type="text" readonly name="hora_fin" id="hora_fin" data-role="datebox" data-options='{"mode":"timebox", "useNewStyle":true, "overrideTimeFormat": 12}' />    
                 
                 <label for="nombre">Nombre/Razón Social:</label>
                 <input type="text" name="nombre" id="nombre" value=""  />
