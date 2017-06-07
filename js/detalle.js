@@ -38,8 +38,10 @@ $(	document).ready(function(e) {
                data: data,
                success: function(result) {
                    resp = result.toString().split("|");
-				   if ( resp[0] == 0)
+				   if ( resp[0] == 0) {
 				   		alerta(resp[1]);
+						setFotosPedido($.QueryString["IDPedido"]);
+				   }
 					else
 						alerta("Error, no se pudo subir la foto");
 						
