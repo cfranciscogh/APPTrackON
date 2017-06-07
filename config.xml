@@ -48,6 +48,7 @@
 
     <!-- Plugins -->
 	 <plugin name="cordova-plugin-geolocation" spec="2.4.1" />
+	<plugin name="cordova-plugin-camera" spec="2.4.1" />
     <!-- Core plugins -->
 	 
 
