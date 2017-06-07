@@ -177,6 +177,7 @@ $(	document).ready(function(e) {
 
 	setPedido($.QueryString["IDPedido"]);
 	setTracking($.QueryString["IDPedido"]);
+	setFotosPedido($.QueryString["IDPedido"]);
 	$("#IDPedido").val($.QueryString["IDPedido"]);
 	$("#regresarPanel").attr("href","panel.html?idChofer=" + $.QueryString["idChofer"] + "&empresa=" + $.QueryString["empresa"]);
 	
@@ -549,7 +550,7 @@ function setFotosPedido(idPedido){
 			if ( resultado.length > 0 ){
 				html = "<table width='100%'><tr>";		
 				for (var i = 0; i<resultado.length;i++){
-					html += "<td width='50%'><img src='"+ resultado[i].Ubicacion.replace("~","http://www.meridian.com.pe/GT_Extranet") + "' width='90%'/><br><a onclick='quitarFoto("+ resultado[i].IDFoto + ")'>Borrar</a></td>";
+					html += "<td style='vertical-align:top;' width='50%'><img src='"+ resultado[i].Ubicacion.replace("~","http://www.meridian.com.pe/GT_Extranet") + "' width='90%'/><br><a onclick='quitarFoto("+ resultado[i].IDFoto + ")'>Borrar</a></td>";
 					if ( (i%2)!=0 && i>0 )
 						html += "</tr><tr>"; 			 
 				}
