@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.grupotransmeridian.ontrack"
-        version   = "3.1.0">
+        version   = "4.1.0">
 
     <name>OnTrack Meridian</name>
 
@@ -118,7 +118,9 @@
     	<param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
 	</feature>
 	
-	
+	<feature name="Camera">
+    <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+</feature>
 
 
 </widget>
