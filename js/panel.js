@@ -6,12 +6,7 @@ $(document).ready(function(e) {
         getProgramaciones();
     });
 	
-	if ($.QueryString["empresa"] == "SODIMA"){
-		$("#tituloEmpresa").html("SODIMAC");
-	}
-	if ($.QueryString["empresa"] == "MAESTR"){
-		$("#tituloEmpresa").html("MAESTRO");
-	}//tituloEmpresa
+	$("#tituloEmpresa").html($.QueryString["empresa"]);
 	
 	$("#regresarEmpresa").attr("href","empresa.html?idChofer=" + $.QueryString["idChofer"]);
 	$("#irPicking").attr("href","picking.html?idChofer=" + $.QueryString["idChofer"] +'&empresa='+ $.QueryString["empresa"] );
