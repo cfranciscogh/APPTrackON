@@ -8,19 +8,18 @@ function onSuccess(position) {
 
 // onError Callback receives a PositionError object
 //
+
+function quitarFoto(IDFoto, ctr){
+	if ( confirm('Desea quitar esta foto?')){
+		$(ctr).parent().parent().remove();
+	}
+}
+
 function onError(error) {
     console.log('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
 }
 
-//document.addEventListener("deviceready", onDeviceReady, false);
-var watchID = null;
-
-$(document).ready(function(e) {
-	
-	
- $(document).bind('deviceready', function(){
-
-  function sendImage(src) {
+function sendImage(src) {
 
     src = (src == 'library') ? Camera.PictureSourceType.PHOTOLIBRARY : Camera.PictureSourceType.CAMERA;
     navigator.camera.getPicture(success, fail, {quality: 45, sourceType: src});
@@ -31,18 +30,21 @@ $(document).ready(function(e) {
 
                              // send the data
                              $.post(url, params, function(data) {
-                                     alert('sent');
-                                     // Display the selected image on send complete
-                                     $('#image').attr('src', 'data:image/jpeg;base64,' + params['image']);     
+                                     alert('sent');     
                              });
                              }
 }
 
   function fail(message) { alert(message); }
 
-  $('#btnFoto').click(function () { sendImage("camera"); });
+  
+//document.addEventListener("deviceready", onDeviceReady, false);
+var watchID = null;
 
-  });
+$(document).ready(function(e) {
+	
+	
+ $('#btnFoto').click(function (e) { e.preventDefault(); sendImage("camera"); });
     
  
  $('#fileFoto').on('change', function (e) {
@@ -62,9 +64,7 @@ $(document).ready(function(e) {
                url: 'http://www.meridian.com.pe/GT_Extranet/TransportesMeridian/Util/UploadImageTracking.ashx?IDPedido=' + $("#IDPedido").val(),
                contentType: false,
                processData: false,
-			   //mimeType:"multipart/form-data", 
                data: data,
-			   cache: false, 
                success: function(result) {
                    resp = result.toString().split("|");
 				   if ( resp[0] == 0) {
@@ -83,7 +83,8 @@ $(document).ready(function(e) {
                        err = JSON.parse(xhr.responseText).Message;
                        
 					   $('#file').val("");
-					   console.log(err);
+					   console.log(xhr);
+					    console.log(status);
 					   alerta("Error, no se pudo subir la foto");
 					   $.mobile.loading('hide'); 
                     }
@@ -398,7 +399,10 @@ function setTracking(idPedido){
 					if ( resultado[i].IDEstado > 3 ) {
 						$("#DIVEstado").fadeIn("fast");
 						$("#DIVRecepcionado").fadeIn("fast");
+						$(".contentAtencion").fadeIn("fast");
 						$("#hora").val(resultado[i].TiempoAproxLlegadaFormat);
+						$("#hora_inicio").val(resultado[i].Hora_Inicio);
+						$("#hora_fin").val(resultado[i].Hora_Termino);
 					}
 					
 					$("#estado").selectmenu( "refresh" )		
@@ -581,7 +585,7 @@ function setFotosPedido(idPedido){
 			if ( resultado.length > 0 ){
 				html = "<table width='100%'><tr>";		
 				for (var i = 0; i<resultado.length;i++){
-					html += "<td style='vertical-align:top;' width='50%'><img src='"+ resultado[i].Ubicacion.replace("~","http://www.meridian.com.pe/GT_Extranet") + "' width='90%'/><br><a onclick='quitarFoto("+ resultado[i].IDFoto + ")'>Borrar</a></td>";
+					html += "<td style='vertical-align:top;' width='50%'><div class='imgPanel'><img src='"+ resultado[i].Ubicacion.replace("~","http://www.meridian.com.pe/GT_Extranet") + "' width='100%'/> <a onclick='quitarFoto("+ resultado[i].IDFoto + ", this)'>Borrar</a></div></td>";
 					if ( (i%2)!=0 && i>0 )
 						html += "</tr><tr>"; 			 
 				}
