@@ -18,16 +18,59 @@ var watchID = null;
 $(	document).ready(function(e) {
     
  
- 
+ $('#file').on('change', function (e) {
+	 $.mobile.loading('show'); 
+    var files = e.target.files;
+    //var myID = 3; //uncomment this to make sure the ajax URL works
+    if (files.length > 0) {
+       if (window.FormData !== undefined) {
+           var data = new FormData();
+		   data.append("IDPedido", $("#IDPedido").val());
+           for (var x = 0; x < files.length; x++){
+               data.append("file" + x, files[x]);
+           }
+			//console.log($("#IDPedido").val());
+           $.ajax({
+               type: "POST",
+               url: 'http://www.meridian.com.pe/GT_Extranet/TransportesMeridian/Util/UploadImageTracking.ashx?IDPedido=' + $("#IDPedido").val(),
+               contentType: false,
+               processData: false,
+               data: data,
+               success: function(result) {
+                   resp = result.toString().split("|");
+				   if ( resp[0] == 0)
+				   		alerta(resp[1]);
+					else
+						alerta("Error, no se pudo subir la foto");
+						
+				   $.mobile.loading('hide'); 
+				   $('#file').val("");
+               },
+               error: function (xhr, status, p3, p4){
+                   var err = "Error " + " " + status + " " + p3 + " " + p4;
+                   if (xhr.responseText && xhr.responseText[0] == "{")
+                       err = JSON.parse(xhr.responseText).Message;
+                       
+					   $('#file').val("");
+					   console.log(err);
+					   alerta("Error, no se pudo subir la foto");
+					   $.mobile.loading('hide'); 
+                    }
+                });
+        } else {
+            alert("This browser doesn't support HTML5 file uploads!");
+          }
+     }
+});
  
  $("#registrarIncidencia").click(function(e) {
         e.preventDefault();
 		
 		if ( latitude == "" ||  longitude == ""){
 			//alert("Ingrese DNI");
-			alerta("No se puede obtener información de ubicación, revise si su GPS se encuentra activo o tenga cobertura de red");
-			return;
-			}
+			//alerta("No se puede obtener información de ubicación, revise si su GPS se encuentra activo o tenga cobertura de red");
+			//return;
+		}
 			
 			
 		if ( $("#hora").val() == "" ){
@@ -40,17 +83,15 @@ $(	document).ready(function(e) {
 		if ( $("#recepcionado").val() == 1 ){
 			
 			if ( $("#nombre").val() == "" ){
-			//alert("Ingrese Nombre");
-			alerta("Ingrese Nombre");
-			$("#nombre").focus();
-			return;
+				//alerta("Ingrese Nombre");
+				//$("#nombre").focus();
+				//return;
 			}
 			
 			if ( $("#dni").val() == "" ){
-			//alert("Ingrese DNI");
-			alerta("Ingrese DNI");
-			$("#dni").focus();
-			return;
+				//alerta("Ingrese DNI");
+				//$("#dni").focus();
+				//return;
 			}
 			
 			if ( latitude == null ||  longitude == null){
@@ -85,12 +126,15 @@ $(	document).ready(function(e) {
 	parametros.Longitud = longitude;	
 	parametros.Incidencia = $("input[name*=tipoIncidencia]:checked").val();	 
 	parametros.FlagMail = 0;
+	parametros.HoraInicio = $("#hora_inicio").val();	 
+	parametros.HoraFin = $("#hora_fin").val();	 
+	//console.log(parametros);
 	//console.log(parametros);
 	//return;
 		
 	$.mobile.loading('show'); 
 	$.ajax({
-        url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/GenerarTraking",
+        url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/GenerarTrakingV2",
         type: "POST",
 		//crossDomain: true,
         dataType : "json",
@@ -136,12 +180,9 @@ $(	document).ready(function(e) {
 	$("#IDPedido").val($.QueryString["IDPedido"]);
 	$("#regresarPanel").attr("href","panel.html?idChofer=" + $.QueryString["idChofer"] + "&empresa=" + $.QueryString["empresa"]);
 	
-	if ($.QueryString["empresa"] == "SODIMA"){
-		$("#tituloEmpresa").html("SODIMAC");
-	}
-	if ($.QueryString["empresa"] == "MAESTR"){
-		$("#tituloEmpresa").html("MAESTRO");
-	}//tituloEmpresa
+	$("#tituloEmpresa").html($.QueryString["empresa"]);
+	
+ 
 	
 	setIncidencias_Tracking($.QueryString["empresa"]);
 	
@@ -153,9 +194,9 @@ $(	document).ready(function(e) {
 		
 		if ( latitude == "" ||  longitude == ""){
 			//alert("Ingrese DNI");
-			alerta("No se puede obtener información de ubicación, revise si su GPS se encuentra activo o tenga cobertura de red");
-			return;
-			}
+			//alerta("No se puede obtener información de ubicación, revise si su GPS se encuentra activo o tenga cobertura de red");
+			//return;
+		}
 			
 			
 		if ( $("#hora").val() == "" ){
@@ -168,17 +209,15 @@ $(	document).ready(function(e) {
 		if ( $("#recepcionado").val() == 1 ){
 			
 			if ( $("#nombre").val() == "" ){
-			//alert("Ingrese Nombre");
-			alerta("Ingrese Nombre");
-			$("#nombre").focus();
-			return;
+				//alerta("Ingrese Nombre");
+				//$("#nombre").focus();
+				//return;
 			}
 			
 			if ( $("#dni").val() == "" ){
-			//alert("Ingrese DNI");
-			alerta("Ingrese DNI");
-			$("#dni").focus();
-			return;
+				//alerta("Ingrese DNI");
+				//$("#dni").focus();
+				//return;
 			}
 			
 			if ( latitude == null ||  longitude == null){
@@ -214,12 +253,15 @@ $(	document).ready(function(e) {
 	parametros.Longitud = longitude;	
 	parametros.Incidencia = $("#incidencia").val();	 
 	parametros.FlagMail = 1;
+	parametros.HoraInicio = $("#hora_inicio").val();	 
+	parametros.HoraFin = $("#hora_fin").val();	 
 	//console.log(parametros);
 	//return;
 		
 	$.mobile.loading('show'); 
 	$.ajax({
-        url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/GenerarTraking",
+       //url : "http://localhost:8099/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/GenerarTraking",
+	    url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/GenerarTrakingV2",
         type: "POST",
 		//crossDomain: true,
         dataType : "json",
@@ -475,6 +517,48 @@ function setDetallePedido(idPedido){
 				$("#contentProgramaciones").html("<h3>No se encontro informaci&oacute;n</h3>");
 //				//Mensaje
 			}
+        },
+
+        error : function(jqxhr) 
+        {
+		   //console.log(jqxhr);	
+		   alerta('Error de conexi\u00f3n, contactese con sistemas!');
+        }
+
+    });		 
+	
+}
+
+
+function setFotosPedido(idPedido){
+	
+	$.mobile.loading('show'); 
+	$.ajax({
+        url : "http://www.meridian.com.pe/ServiciosWEB/TransportesMeridian/Sodimac/Pedido/WSPedido.asmx/ConsultarFotos",
+        type: "POST",
+		//crossDomain: true,
+        dataType : "json",
+        data : '{"IDPedido":"'+idPedido+'"}',
+		contentType: "application/json; charset=utf-8",
+        success : function(data, textStatus, jqXHR) {
+			resultado = $.parseJSON(data.d);			
+			$(".panelFotos").html("");
+			//console.log(resultado);
+			$.mobile.loading('hide');
+			var html = "";
+			if ( resultado.length > 0 ){
+				html = "<table width='100%'><tr>";		
+				for (var i = 0; i<resultado.length;i++){
+					html += "<td width='50%'><img src='"+ resultado[i].Ubicacion.replace("~","http://www.meridian.com.pe/GT_Extranet") + "' width='90%'/><br><a onclick='quitarFoto("+ resultado[i].IDFoto + ")'>Borrar</a></td>";
+					if ( (i%2)!=0 && i>0 )
+						html += "</tr><tr>"; 			 
+				}
+				html += "</tr></table>";		
+				$(".panelFotos").append(html);	
+			}
+			else
+				$(".panelFotos").html("<h3>No se encontro informaci&oacute;n</h3>");
+			
         },
 
         error : function(jqxhr) 
