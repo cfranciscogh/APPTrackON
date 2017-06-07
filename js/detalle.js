@@ -18,7 +18,7 @@ var watchID = null;
 $(	document).ready(function(e) {
     
  
- $('#file').on('change', function (e) {
+ $('#fileFoto').on('change', function (e) {
 	 $.mobile.loading('show'); 
     var files = e.target.files;
     //var myID = 3; //uncomment this to make sure the ajax URL works
@@ -29,13 +29,12 @@ $(	document).ready(function(e) {
            for (var x = 0; x < files.length; x++){
                data.append("file" + x, files[x]);
            }
-			//console.log($("#IDPedido").val());
+			console.log($("#IDPedido").val());
            $.ajax({
                type: "POST",
                url: 'http://www.meridian.com.pe/GT_Extranet/TransportesMeridian/Util/UploadImageTracking.ashx?IDPedido=' + $("#IDPedido").val(),
                contentType: false,
                processData: false,
-			   dataType: "text", 
 			   mimeType:"multipart/form-data", 
                data: data,
 			   cache: false, 
