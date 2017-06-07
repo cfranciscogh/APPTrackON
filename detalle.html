@@ -25,7 +25,7 @@
 <div data-role="page" class="fondo">
 
 	<div data-role="header" data-position="fixed" data-theme="a">
-		<h1 id="tituloEmpresa"></h1>
+		<h1 id="tituloEmpresa">Tracking</h1>
 	</div><!-- /header -->
 
 	<div role="main" id="contentProgramaciones" class="ui-content">
@@ -35,6 +35,7 @@
             	<ul>
                 	<li class="ui-tabs-active ui-state-active"><a class="ui-btn-active" href="#one" data-theme="a" style="font-size:16px;">Detalle</a></li>
                     <li><a href="#two" data-theme="a" style="font-size:16px;">Tracking</a></li>
+                    <li><a href="#trhee" data-theme="a" style="font-size:16px;">Fotos</a></li>
                </ul>
             </div>
            	
@@ -90,12 +91,17 @@
                 </div>
                 
                 <div class="contentDatos" style="display:none;">
-                <h4>&iquest;Quien recibio el pedido?</h4>
+                <h4>Información de recepción:</h4>
                 
-                 <label for="nombre">Nombre:</label>
+                <label for="hora">Inicio de Atención:</label>
+				<input type="text" readonly name="hora_inicio" id="hora_inicio" data-role="datebox" data-options='{"mode":"timebox", "useNewStyle":true, "overrideTimeFormat": 12}' />    
+                 <label for="hora">Fin de Atención:</label>   
+				<input type="text" readonly name="hora_fin" id="hora_fin" data-role="datebox" data-options='{"mode":"timebox", "useNewStyle":true, "overrideTimeFormat": 12}' />    
+                
+                <label for="nombre">Nombre/Razón Social:</label>
                 <input type="text" name="nombre" id="nombre" value=""  />
                 
-                 <label for="dni">DNI:</label>
+                 <label for="dni">DNI/RUC:</label>
                 <input type="number" name="dni" id="dni" maxlength="8" size="8" value="" pattern="[0-9]*"/>
                 </div>
                
@@ -103,11 +109,7 @@
                	<div id="DIVEstado" style="display:none">
                 <label for="estado">Estado:</label>
                 <select name="estado" onChange="HabilitarIncidencia(this)" id="estado" data-native-menu="false">
-                    <!--<option>Seleccionar estado</option>-->
                     <option selected value="1">Pendiente</option>
-                    <!--<option value="2">En ruta</option> -->
-                    <!--<option value="3">No Habido</option>-->
-                    <!--<option value="4">Entregado</option>-->
                 </select>
                 </div>
                 
@@ -116,16 +118,6 @@
                 <div id="DIVIncidencia" style="display:none">
                 <label for="incidencia">Motivo:</label>
                 <select name="incidencia" id="incidencia" data-native-menu="false">
-                   <!-- <option value="0">Seleccionar Incidencia</option>
-                    <option value="1">Cliente ausente</option>
-                    <option value="2">Direcci&oacute;n Herrada</option> 
-                    <option value="3">Persona No Autorizada</option>
-                    <option value="4">Falta de Pago</option>
-                    <option value="5">No Aceptaci&oacute;n de Producto</option>
-                    
-                    <option value="14">Fuera de Hora</option>
-                    <option value="15">Despacho Herrado</option>
-                    <option value="16">Entrega Parcial</option>-->
                 </select>
                 </div>
                 
@@ -136,7 +128,18 @@
                 
             </div>
             
-            
+              <div id="trhee" class="ui-content ui-body ui-body-a" style="min-height:230px;">
+              	 
+                <label for="hora">Seleccionar imagen:</label>
+               
+                	<input accept="image/*" type="file" multiple name="file" id="file"  />   
+                    
+                    <div class="panelFotos">
+                    
+                    </div>
+                   <!-- <a id="btnFoto"  data-position-to="window" data-icon="plus" data-inline="true" data-corners="true" data-shadow="true"   data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-inline ui-btn-icon-left ui-icon-plus"> Agregar </a>-->
+                     
+              </div>
             
             <div data-role="popup" id="myPopup"  data-overlay-theme="b">
       	 	<div data-role="header">
