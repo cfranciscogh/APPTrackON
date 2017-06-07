@@ -35,7 +35,7 @@ $(	document).ready(function(e) {
                url: 'http://www.meridian.com.pe/GT_Extranet/TransportesMeridian/Util/UploadImageTracking.ashx?IDPedido=' + $("#IDPedido").val(),
                contentType: false,
                processData: false,
-			   mimeType:"multipart/form-data", 
+			   //mimeType:"multipart/form-data", 
                data: data,
 			   cache: false, 
                success: function(result) {
