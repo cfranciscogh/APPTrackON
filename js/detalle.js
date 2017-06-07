@@ -15,7 +15,34 @@ function onError(error) {
 //document.addEventListener("deviceready", onDeviceReady, false);
 var watchID = null;
 
-$(	document).ready(function(e) {
+$(document).ready(function(e) {
+	
+	
+ $(document).bind('deviceready', function(){
+
+  function sendImage(src) {
+
+    src = (src == 'library') ? Camera.PictureSourceType.PHOTOLIBRARY : Camera.PictureSourceType.CAMERA;
+    navigator.camera.getPicture(success, fail, {quality: 45, sourceType: src});
+
+                             function success(imageData) {
+                             var url = 'http://www.meridian.com.pe/GT_Extranet/TransportesMeridian/Util/UploadImageTracking.ashx?IDPedido=' + $("#IDPedido").val();
+                             var params = {image: imageData};
+
+                             // send the data
+                             $.post(url, params, function(data) {
+                                     alert('sent');
+                                     // Display the selected image on send complete
+                                     $('#image').attr('src', 'data:image/jpeg;base64,' + params['image']);     
+                             });
+                             }
+}
+
+  function fail(message) { alert(message); }
+
+  $('#btnFoto').click(function () { sendImage("camera"); });
+
+  });
     
  
  $('#fileFoto').on('change', function (e) {
@@ -29,7 +56,7 @@ $(	document).ready(function(e) {
            for (var x = 0; x < files.length; x++){
                data.append("file" + x, files[x]);
            }
-			console.log($("#IDPedido").val());
+		  //console.log($("#IDPedido").val());
            $.ajax({
                type: "POST",
                url: 'http://www.meridian.com.pe/GT_Extranet/TransportesMeridian/Util/UploadImageTracking.ashx?IDPedido=' + $("#IDPedido").val(),
