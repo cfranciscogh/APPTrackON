@@ -712,7 +712,7 @@ function setDetallePedido(idPedido){
 					var html = "<table cellpadding='0' cellspacing='0' width='100%'>";
 					html += "<tr><td class='titulo'> " + resultado[i].Descripcion +  "</td><td width='30' class='titulo'><input style='width:22px; height:22px;' data-role='flipswitch' checked type='checkbox' name='chkProdcuto_" + resultado[i].IDDetalle +  "' id='chkProdcuto_" + resultado[i].IDDetalle +  "' value='" + resultado[i].IDDetalle +  "' /></td></tr>";
 					html += "<tr><td colspan='2'><b>SKU: </b>" +  resultado[i].SKU +  "</td></tr>";
-					html += "<tr><td colspan='2'><b>Cantidad:</b> " + resultado[i].Cantidad +  "<div style='float:right;' class=''><b>Confirmar: </b><input type='number' value='" + resultado[i].Cantidad +  "' min='0' max='" + resultado[i].Cantidad +  "' /></div></td></tr>";
+					html += "<tr><td colspan='2'><b>Cantidad:</b> " + resultado[i].Cantidad +  "<div style='float:right;' class=''><b>Confirmar: </b><input type='number' value='" + resultado[i].Cantidad +  "' pattern='[0-9]*' min='0' max='" + resultado[i].Cantidad +  "' /></div></td></tr>";
 					html += "</table>";
 					$("#lista" + idPedido).append('<li>' + html +  '</li> ');	
 					
