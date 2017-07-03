@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>OnTrack Meridian</title>
+    <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" type="text/css" href="css/themes/default/jquery.mobile.theme-1.4.5.min.css">
@@ -62,35 +63,15 @@
 <div data-role="page" class="fondo">
 
 	<div data-role="header" data-position="fixed" data-theme="a">
-		<h1 id="tituloEmpresa"></h1>
+		<h1 id="tituloEmpresa">Mis Despachos</h1>
 	</div><!-- /header -->
 
-	<div id="contentProgramaciones" role="main" class="ui-content">
-    
-    
-    <div id="divTABS" data-role="tabs">
-        	<div data-role="navbar">
-            	<ul>
-                	<li class="ui-tabs-active ui-state-active">
-                    <a class="ui-btn-active" href="#one" data-theme="a" style="font-size:16px;">E-Commerce</a></li>
-                    <li><a href="#two" data-theme="a" style="font-size:16px;">DAD</a></li>
-               </ul>
-            </div>
-    	<div id="one" class="ui-content ui-body ui-body-a">
-        
-        	<form class="ui-filterable"><input id="rich-autocomplete-input" data-type="search" placeholder="Buscar..."></form>
+	<div id="contentProgramaciones" role="main" class="ui-content" style="background-color:#fff;padding-top: 10px;">
+    <form class="ui-filterable"><input id="rich-autocomplete-input" data-type="search" placeholder="Buscar..."></form>
         <ul id="listProgramacion" data-role="listview" data-filter="true" data-inset="true" data-input="#rich-autocomplete-input">
         </ul>
-        
-        </div>
-        <div id="two" class="ui-content ui-body ui-body-a">
-        
-        	<form class="ui-filterable"><input id="rich-autocomplete-input-DAD" data-type="search" placeholder="Buscar..."></form>
-        <ul id="listProgramacionDAD" data-role="listview" data-filter="true" data-inset="true" data-input="#rich-autocomplete-input-DAD">
-        </ul>
-        
-        </div>
-     </div>
+    
+     
       
         
         
@@ -101,7 +82,9 @@
 		<ul>
 			<li><a id="actualizar" data-icon="refresh">Actualizar</a></li>
 			<li><a id="irPicking" href="#" data-ajax="false" data-icon="check">Ir a picking</a></li>	
-            <li><a id="regresarEmpresa" href="#" data-ajax="false" data-icon="back">Cambiar de empresa</a></li>			 
+            <li class="itemAdmin"><a id="regresarEmpresa" href="#" data-ajax="false" data-icon="back">Cambiar de empresa</a></li>			
+            <!--<li class="itemUsuario"><a href="index.html" data-ajax="false"  data-icon="back">Salir</a></li>--> 
+            <li class="itemUsuario"><a id="irEmbarque" href="embarque.html" data-ajax="false"  data-icon="gear">Embarque</a></li>
 		</ul>
 	</div><!-- /navbar -->
 	</div><!-- /footer -->
