@@ -3,6 +3,7 @@ var  latitude = "";
 var longitude = "";
 var check = true;
 var dominio = "http://www.meridian.com.pe/ServiciosWEB/"; 
+var dominio_extranet = "http://www.meridian.com.pe/GT_Extranet/";
 //var dominio = "http://localhost:34927/";
 function onSuccess(position) {
    latitude = position.coords.latitude;
@@ -28,7 +29,7 @@ function sendImage(src) {
     navigator.camera.getPicture(success, fail, {quality: 45, sourceType: src});
 
                              function success(imageData) {
-                             var url = dominio + '/TransportesMeridian/Util/UploadImageTracking.ashx?IDPedido=' + $("#IDPedido").val();
+                             var url = dominio_extranet + '/TransportesMeridian/Util/UploadImageTracking.ashx?IDPedido=' + $("#IDPedido").val();
                              var params = {image: imageData};
 
                              // send the data
@@ -64,7 +65,7 @@ $(document).ready(function(e) {
 		  //console.log($("#IDPedido").val());
            $.ajax({
                type: "POST",
-               url: dominio + 'TransportesMeridian/Util/UploadImageTracking.ashx?IDPedido=' + $("#IDPedido").val(),
+               url: dominio_extranet + 'TransportesMeridian/Util/UploadImageTracking.ashx?IDPedido=' + $("#IDPedido").val(),
                contentType: false,
                processData: false,
                data: data,
