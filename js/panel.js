@@ -81,7 +81,7 @@ function getProgramaciones(){
 					
 					css = css + " " + cssGrupo;
 					var href = "";
-					if (  resultado[i].IDEstado == 3  || resultado[i].IDEstado == 4 )
+					if (  resultado[i].IDEstado == 2  || resultado[i].IDEstado == 3  || resultado[i].IDEstado == 4 )
 						href = 'href="detalle.html?IDPedido='+resultado[i].IDPedido+'&idChofer='+$.QueryString["idChofer"]+'&empresa='+$.QueryString["empresa"] +  paramGrupo + '"'; 
 						
 					
